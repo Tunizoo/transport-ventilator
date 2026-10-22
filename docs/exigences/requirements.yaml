@@ -1,0 +1,164 @@
+# Exigences machine-lisibles — extraites du Cahier des charges rev. A (2026-10)
+# Chaque exigence porte : sa source (section du CDC), les mesures de maîtrise de
+# risque qu'elle implémente (IDs de l'analyse de risques préliminaire), et sa
+# méthode de vérification. Statut global : draft (en attente de revue clinique).
+
+meta:
+  source: "Cahier des charges — Ventilateur de transport open source, rev. A"
+  risk_analysis: "Analyse de risques préliminaire (PHA), 2026-10"
+  date: "2026-10-22"
+  status: draft
+
+requirements:
+  # --- Modes (CDC §2) ---
+  - id: REQ-MODE-001
+    title: Modes requis
+    text: >
+      Le dispositif offre les modes VC/VAC, PC/PAC, SIMV (VC et PC) avec aide
+      inspiratoire, VS-PEP/CPAP+AI, VNI avec compensation de fuites, et VEB
+      (ventilation à embout buccal).
+    source: "CDC §2"
+    verification: essai
+  - id: REQ-MODE-002
+    title: Ventilation d'apnée
+    text: >
+      En mode spontané, l'absence de cycle pendant le délai d'apnée réglé
+      déclenche automatiquement une ventilation de secours contrôlée et une
+      alarme haute priorité.
+    source: "CDC §2"
+    risk_controls: [VENT-02, USE-05]
+    verification: essai
+  - id: REQ-MODE-003
+    title: Continuité entre modes
+    text: Le changement de mode s'effectue sans interruption de la ventilation.
+    source: "CDC §2"
+    verification: essai
+
+  # --- Performance (CDC §3) ---
+  - id: REQ-PERF-001
+    title: Volume courant
+    text: "Plage 50–2000 mL (objectif 20–2000 mL) ; exactitude ±(4 mL + 15 %) du volume délivré."
+    source: "CDC §3"
+    verification: essai
+  - id: REQ-PERF-002
+    title: Fréquence respiratoire
+    text: "Plage 2–60 c/min, exactitude ±1 c/min."
+    source: "CDC §3"
+    verification: essai
+  - id: REQ-PERF-003
+    title: Pression inspiratoire
+    text: "Plage 5–55 cmH2O ; exactitude ±(2 cmH2O + 4 % de la lecture)."
+    source: "CDC §3"
+    verification: essai
+  - id: REQ-PERF-004
+    title: Limite de pression de sécurité
+    text: >
+      Limite logicielle indépendante de la boucle de contrôle à 60 cmH2O, doublée
+      d'une soupape mécanique indépendante de toute électronique.
+    source: "CDC §3, §7"
+    risk_controls: [VENT-01]
+    verification: essai
+  - id: REQ-PERF-005
+    title: PEEP
+    text: "Plage 0–25 cmH2O (objectif 0–35) ; exactitude ±(2 cmH2O + 4 %)."
+    source: "CDC §3"
+    risk_controls: [VENT-06]
+    verification: essai
+  - id: REQ-PERF-006
+    title: FiO2
+    text: "Plage 21–100 %, exactitude ±5 points, capteur de monitorage distinct de la commande."
+    source: "CDC §3"
+    risk_controls: [VENT-04]
+    verification: essai
+  - id: REQ-PERF-007
+    title: Débit de pointe
+    text: "≥ 120 L/min (objectif ≥ 240 L/min pour la compensation de fuites en VNI)."
+    source: "CDC §3"
+    verification: essai
+  - id: REQ-PERF-008
+    title: Trigger inspiratoire
+    text: "Trigger en débit réglable 0,5–15 L/min, robuste aux artefacts de transport."
+    source: "CDC §3"
+    risk_controls: [VENT-05]
+    verification: essai
+  - id: REQ-PERF-009
+    title: Boucle d'asservissement
+    text: "Boucle de contrôle pression/débit exécutée à une fréquence ≥ 100 Hz."
+    source: "CDC §7"
+    risk_controls: [SW-01]
+    verification: analyse
+
+  # --- Alarmes (CDC §4) ---
+  - id: REQ-ALRM-001
+    title: Indépendance des alarmes hautes
+    text: >
+      Les alarmes de haute priorité sont générées par le MCU temps réel et
+      restent fonctionnelles en cas de défaillance du processeur IHM ; buzzer
+      alimenté indépendamment.
+    source: "CDC §4"
+    risk_controls: [SW-02, VENT-03]
+    verification: essai
+  - id: REQ-ALRM-002
+    title: Jeu d'alarmes
+    text: >
+      Alarmes conformes IEC 60601-1-8 : pression haute/basse, déconnexion,
+      apnée, occlusion, Vt/VM hors seuils, fréquence, FiO2, fuite VNI, batterie
+      (30 et 10 min), panne technique, perte d'alimentation externe.
+    source: "CDC §4"
+    verification: essai
+  - id: REQ-ALRM-003
+    title: Report d'alarme domicile
+    text: "Report d'alarme vers un aidant hors de la pièce (module déporté ou passerelle)."
+    source: "CDC §4 (revendication domicile)"
+    risk_controls: [USE-03]
+    verification: essai
+
+  # --- Physique / environnement (CDC §5) ---
+  - id: REQ-PHYS-001
+    title: Masse
+    text: "≤ 6 kg batterie incluse (objectif ≤ 5 kg)."
+    source: "CDC §5"
+    verification: inspection
+  - id: REQ-PHYS-002
+    title: Autonomie
+    text: "≥ 4 h en ventilation type ; objectif ≥ 8 h avec seconde batterie remplaçable à chaud ; alarmes à 30 et 10 min restantes."
+    source: "CDC §5"
+    risk_controls: [ELEC-01]
+    verification: essai
+  - id: REQ-PHYS-003
+    title: Environnement transport
+    text: "Chute 0,75 m en fonctionnement, vibrations ISO 80601-2-84, −18/+50 °C, IP44, CEM IEC 60601-1-2/-1-12."
+    source: "CDC §5"
+    risk_controls: [ELEC-04, ELEC-05, ELEC-06]
+    verification: essai
+
+  # --- Sûreté de fonctionnement (CDC §7) ---
+  - id: REQ-SAFE-001
+    title: Valve anti-asphyxie
+    text: >
+      En cas de défaut turbine ou d'arrêt complet, une valve anti-asphyxie
+      permet la respiration spontanée à l'air ambiant sans action de
+      l'utilisateur.
+    source: "CDC §7"
+    risk_controls: [VENT-03]
+    verification: essai
+  - id: REQ-SAFE-002
+    title: Watchdog matériel
+    text: >
+      Un watchdog matériel indépendant redémarre le MCU et place le système en
+      état de repli sûr si la boucle de contrôle cesse de rafraîchir.
+    source: "CDC §7"
+    risk_controls: [SW-01, VENT-03]
+    verification: essai
+  - id: REQ-SAFE-003
+    title: Autotest de démarrage
+    text: "Autotest complet (capteurs, valves, batterie, fuite circuit, buzzer) < 30 s, bloquant en cas d'échec."
+    source: "CDC §7"
+    risk_controls: [USE-02]
+    verification: essai
+  - id: REQ-SAFE-004
+    title: Reprise après coupure
+    text: "Restauration des réglages depuis mémoire non volatile avec contrôle d'intégrité, reprise < 30 s, confirmation affichée."
+    source: "CDC §2, §7"
+    risk_controls: [SW-05]
+    verification: essai

@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.venv/
+build/
+*.o
+*.exe
+control-sim/results/*.png
+!control-sim/results/.gitkeep

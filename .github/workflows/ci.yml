@@ -1,0 +1,27 @@
+name: ci
+on: [push, pull_request]
+
+jobs:
+  firmware-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build and run host tests
+        run: |
+          gcc -std=c99 -Wall -Wextra -Werror -o test_core \
+            firmware/tests/test_core.c \
+            firmware/core/otv_pid.c \
+            firmware/core/otv_breath_fsm.c -lm
+          ./test_core
+
+  control-sim:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run closed-loop verification
+        run: |
+          pip install numpy matplotlib
+          python control-sim/simulate.py --headless
