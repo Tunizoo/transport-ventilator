@@ -54,7 +54,9 @@ static void test_fsm_mandatory_cycling(void)
     otv_fsm_start(&f);
 
     int insp_starts = 0;
-    otv_phase_t prev = OTV_PHASE_STANDBY;
+    /* start() a déjà ouvert la 1re inspiration : on ne compte que les
+     * transitions suivantes (cycles machine attendus à t = 4 s et 8 s). */
+    otv_phase_t prev = f.phase;
     float t_second_insp = -1.0f;
     for (int i = 0; i < 9000; i++) { /* 9 s */
         otv_fsm_step(&f, &s, DT, 10.0f, 0.0f);
