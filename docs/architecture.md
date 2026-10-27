@@ -5,6 +5,8 @@ l'existant et cahier des charges §7).
 
 ## Circuit pneumatique
 
+![Schéma de principe](schema-principe.svg)
+
 ```
 Entrée d'air (filtre) ──► Turbine ──► Capteurs insp. (P, débit) ──► Patient
 Entrée O2 (valve proportionnelle) ──► (mélange amont turbine)

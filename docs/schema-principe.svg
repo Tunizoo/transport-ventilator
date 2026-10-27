@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 700" font-family="Segoe UI, Arial, sans-serif" role="img" aria-label="OTV - schéma de principe pneumatique et électronique">
+  <defs>
+    <marker id="gasA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#1f6fb2"/></marker>
+    <marker id="sigA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#888888"/></marker>
+  </defs>
+  <rect x="0" y="0" width="980" height="700" fill="#ffffff"/>
+  <text x="24" y="26" font-size="16" font-weight="700" fill="#1a1a1a">OTV — Schéma de principe : pneumatique et électronique</text>
+  <text x="24" y="46" font-size="11" fill="#777777">Schéma de principe v0 — document de travail, pas un dispositif médical. Réf. : cahier des charges rev. A, docs/architecture.md</text>
+
+  <!-- ===================== Circuit pneumatique ===================== -->
+  <rect x="20" y="60" width="940" height="330" rx="10" fill="none" stroke="#bbbbbb" stroke-width="1.2"/>
+  <text x="36" y="84" font-size="13" font-weight="700" fill="#1a1a1a">Circuit pneumatique</text>
+
+  <!-- lignes gaz principales -->
+  <g fill="none" stroke="#1f6fb2" stroke-width="2">
+    <path d="M170 190H200" marker-end="url(#gasA)"/>
+    <path d="M320 190H350" marker-end="url(#gasA)"/>
+    <path d="M460 190H490" marker-end="url(#gasA)"/>
+    <path d="M620 190H820" marker-end="url(#gasA)"/>
+    <path d="M655 190V135" marker-end="url(#gasA)"/>
+    <path d="M795 190V135" marker-end="url(#gasA)"/>
+    <!-- O2 vers mélangeur -->
+    <path d="M190 300H220" marker-end="url(#gasA)"/>
+    <path d="M290 272V245H260V222" marker-end="url(#gasA)"/>
+    <!-- branche expiratoire -->
+    <path d="M885 218V300H864" marker-end="url(#gasA)"/>
+    <path d="M730 300H704" marker-end="url(#gasA)"/>
+    <path d="M560 300H520" marker-end="url(#gasA)"/>
+  </g>
+  <text x="514" y="290" font-size="11" fill="#555555" text-anchor="end">échappement (filtre expi.)</text>
+
+  <!-- organes de sécurité intrinsèque (rouge) -->
+  <g>
+    <rect x="595" y="95" width="120" height="40" rx="8" fill="#fdecea" stroke="#b3261e" stroke-width="1.6"/>
+    <text x="655" y="112" font-size="12.5" font-weight="600" fill="#1a1a1a" text-anchor="middle">Soupape méca.</text>
+    <text x="655" y="127" font-size="11" fill="#555555" text-anchor="middle">60 cmH2O</text>
+    <rect x="735" y="95" width="120" height="40" rx="8" fill="#fdecea" stroke="#b3261e" stroke-width="1.6"/>
+    <text x="795" y="112" font-size="12.5" font-weight="600" fill="#1a1a1a" text-anchor="middle">Valve anti-</text>
+    <text x="795" y="127" font-size="11" fill="#555555" text-anchor="middle">asphyxie</text>
+  </g>
+
+  <!-- rangée principale -->
+  <g>
+    <rect x="40" y="162" width="130" height="56" rx="8" fill="#ffffff" stroke="#666666" stroke-width="1.3"/>
+    <text x="105" y="186" font-size="13" font-weight="600" fill="#1a1a1a" text-anchor="middle">Entrée d'air</text>
+    <text x="105" y="204" font-size="11" fill="#555555" text-anchor="middle">+ filtre</text>
+    <rect x="200" y="162" width="120" height="56" rx="8" fill="#ffffff" stroke="#666666" stroke-width="1.3"/>
+    <text x="260" y="186" font-size="13" font-weight="600" fill="#1a1a1a" text-anchor="middle">Mélangeur</text>
+    <text x="260" y="204" font-size="11" fill="#555555" text-anchor="middle">air / O2</text>
+    <rect x="350" y="162" width="110" height="56" rx="8" fill="#ffffff" stroke="#666666" stroke-width="1.3"/>
+    <text x="405" y="194" font-size="13" font-weight="600" fill="#1a1a1a" text-anchor="middle">Turbine</text>
+    <rect x="490" y="162" width="130" height="56" rx="8" fill="#ffffff" stroke="#666666" stroke-width="1.3"/>
+    <text x="555" y="186" font-size="13" font-weight="600" fill="#1a1a1a" text-anchor="middle">Capteurs insp.</text>
+    <text x="555" y="204" font-size="11" fill="#555555" text-anchor="middle">P1 · Q1</text>
+    <rect x="820" y="162" width="130" height="56" rx="8" fill="#e8f1fb" stroke="#1f6fb2" stroke-width="2"/>
+    <text x="885" y="186" font-size="13" font-weight="700" fill="#1a1a1a" text-anchor="middle">Patient</text>
+    <text x="885" y="204" font-size="11" fill="#555555" text-anchor="middle">interface / pièce Y</text>
+  </g>
+
+  <!-- rangée O2 + expiratoire -->
+  <g>
+    <rect x="40" y="272" width="150" height="56" rx="8" fill="#ffffff" stroke="#666666" stroke-width="1.3"/>
+    <text x="115" y="296" font-size="13" font-weight="600" fill="#1a1a1a" text-anchor="middle">Entrée O2</text>
+    <text x="115" y="314" font-size="11" fill="#555555" text-anchor="middle">mural · bouteille</text>
+    <rect x="220" y="272" width="140" height="56" rx="8" fill="#ffffff" stroke="#666666" stroke-width="1.3"/>
+    <text x="290" y="296" font-size="13" font-weight="600" fill="#1a1a1a" text-anchor="middle">Valve prop. O2</text>
+    <text x="290" y="314" font-size="11" fill="#555555" text-anchor="middle">dosage FiO2</text>
+    <rect x="560" y="272" width="140" height="56" rx="8" fill="#ffffff" stroke="#666666" stroke-width="1.3"/>
+    <text x="630" y="296" font-size="13" font-weight="600" fill="#1a1a1a" text-anchor="middle">Valve expiratoire</text>
+    <text x="630" y="314" font-size="11" fill="#555555" text-anchor="middle">contrôle PEEP</text>
+    <rect x="730" y="272" width="130" height="56" rx="8" fill="#ffffff" stroke="#666666" stroke-width="1.3"/>
+    <text x="795" y="296" font-size="13" font-weight="600" fill="#1a1a1a" text-anchor="middle">Capteurs expi.</text>
+    <text x="795" y="314" font-size="11" fill="#555555" text-anchor="middle">P2 · Q2</text>
+  </g>
+
+  <!-- liaisons commande / mesure -->
+  <g fill="none" stroke="#888888" stroke-width="1.5" stroke-dasharray="5 4">
+    <path d="M165 470V450H795"/>
+    <path d="M290 450V332" marker-end="url(#sigA)"/>
+    <path d="M405 450V222" marker-end="url(#sigA)"/>
+    <path d="M630 450V332" marker-end="url(#sigA)"/>
+    <path d="M555 222V446" marker-end="url(#sigA)"/>
+    <path d="M795 332V446" marker-end="url(#sigA)"/>
+  </g>
+  <text x="430" y="443" font-size="10.5" fill="#777777">commandes (turbine, valves) · mesures (P, Q)</text>
+
+  <!-- ===================== Électronique ===================== -->
+  <rect x="20" y="458" width="940" height="172" rx="10" fill="none" stroke="#bbbbbb" stroke-width="1.2"/>
+  <text x="36" y="482" font-size="13" font-weight="700" fill="#1a1a1a">Électronique et contrôle</text>
+
+  <g>
+    <rect x="50" y="496" width="230" height="56" rx="8" fill="#ffffff" stroke="#666666" stroke-width="1.3"/>
+    <text x="165" y="518" font-size="13" font-weight="600" fill="#1a1a1a" text-anchor="middle">MCU temps réel (STM32)</text>
+    <text x="165" y="536" font-size="11" fill="#555555" text-anchor="middle">boucle 100 Hz · watchdog matériel</text>
+    <rect x="320" y="496" width="190" height="56" rx="8" fill="#ffffff" stroke="#666666" stroke-width="1.3"/>
+    <text x="415" y="518" font-size="13" font-weight="600" fill="#1a1a1a" text-anchor="middle">Processeur IHM</text>
+    <text x="415" y="536" font-size="11" fill="#555555" text-anchor="middle">écran tactile · courbes</text>
+    <rect x="550" y="490" width="220" height="68" rx="8" fill="#ffffff" stroke="#666666" stroke-width="1.3"/>
+    <text x="660" y="510" font-size="13" font-weight="600" fill="#1a1a1a" text-anchor="middle">Alimentation</text>
+    <text x="660" y="527" font-size="11" fill="#555555" text-anchor="middle">2× batterie Li-ion + BMS</text>
+    <text x="660" y="543" font-size="11" fill="#555555" text-anchor="middle">secteur · 12/24 V véhicule</text>
+    <rect x="810" y="496" width="130" height="56" rx="8" fill="#fdecea" stroke="#b3261e" stroke-width="1.6"/>
+    <text x="875" y="518" font-size="13" font-weight="600" fill="#1a1a1a" text-anchor="middle">Buzzer</text>
+    <text x="875" y="536" font-size="11" fill="#555555" text-anchor="middle">alarme autonome</text>
+  </g>
+
+  <g fill="none" stroke="#888888" stroke-width="1.5">
+    <path d="M280 524H316" marker-end="url(#sigA)"/>
+    <path d="M165 552V584H875V556" marker-end="url(#sigA)"/>
+  </g>
+  <text x="298" y="516" font-size="10" fill="#777777" text-anchor="middle">UART</text>
+  <text x="520" y="599" font-size="10.5" fill="#777777" text-anchor="middle">ligne d'alarme dédiée, indépendante de l'IHM</text>
+
+  <!-- ===================== Légende ===================== -->
+  <g font-size="11.5" fill="#1a1a1a">
+    <line x1="40" y1="662" x2="80" y2="662" stroke="#1f6fb2" stroke-width="2"/>
+    <text x="88" y="666">circuit gaz</text>
+    <line x1="180" y1="662" x2="220" y2="662" stroke="#888888" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <text x="228" y="666">commande / mesure</text>
+    <rect x="370" y="654" width="14" height="14" rx="3" fill="#fdecea" stroke="#b3261e" stroke-width="1.4"/>
+    <text x="392" y="666">sécurité intrinsèque (fonctionne sans électronique)</text>
+    <rect x="700" y="654" width="14" height="14" rx="3" fill="#e8f1fb" stroke="#1f6fb2" stroke-width="1.4"/>
+    <text x="722" y="666">patient</text>
+  </g>
+</svg>
